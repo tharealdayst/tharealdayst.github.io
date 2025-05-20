@@ -55,7 +55,7 @@
   .links {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* TWO columns by default (mobile) */
+    grid-template-columns: repeat(2, 1fr); /* TWO columns on all devices */
     gap: 1.5rem;
     justify-items: center;
     max-width: 450px;
@@ -102,40 +102,7 @@
     padding-bottom: 1rem;
   }
 
-  /* Desktop styles: SWITCH to ONE column layout */
-  @media (min-width: 768px) {
-    body {
-      padding: 3rem 1rem;
-    }
-
-    .links {
-      grid-template-columns: 1fr; /* single column stacked */
-      max-width: 320px;
-      margin: 0 auto 2rem auto;
-    }
-
-    .bio {
-      max-width: 320px;
-      text-align: center;  /* keep bio centered */
-      margin: 0 auto 2rem auto;
-    }
-
-    /* Adjust link buttons to stacked column style */
-    .link-btn {
-      flex-direction: column;
-      align-items: center;
-      max-width: 300px;
-      padding: 1rem 1.5rem;
-      text-align: center;
-    }
-
-    .link-btn img {
-      margin-right: 0;
-      margin-bottom: 0.5rem;
-      width: 60px;
-      height: 60px;
-    }
-  }
+  /* Remove any media queries changing layout, keep consistent two columns */
 </style>
 </head>
 <body>
