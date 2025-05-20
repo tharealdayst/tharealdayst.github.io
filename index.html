@@ -1,252 +1,182 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>tharealdayst - Connect & Stream</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
-
-  <!-- FontAwesome for icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <!-- Favicon -->
-  <link rel="icon" href="profile.png" type="image/png" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tharealdayst</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    /* Background Gradient Animation */
-    body {
+    * {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
-      background-size: 600% 600%;
-      animation: gradientShift 20s ease infinite;
-      color: white;
-      text-align: center;
-      padding: 1.5rem 1rem 3rem;
+      padding: 0;
       box-sizing: border-box;
     }
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+
+    body, html {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      background: linear-gradient(135deg, #00f0ff, #ff4bc1, #f8ff48);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
+      overflow: hidden;
     }
 
-    /* Loading Screen */
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
     #loading-screen {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #000c;
+      width: 100%;
+      height: 100%;
+      background-color: #0e0e0e;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
+      z-index: 100;
+      transition: opacity 0.6s ease;
     }
+
     #loading-screen.hidden {
       opacity: 0;
       pointer-events: none;
     }
-    .spinner {
-      width: 60px;
-      height: 60px;
-      border: 7px solid rgba(255, 255, 255, 0.15);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 1.2s linear infinite;
-    }
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+
+    .loader-text {
+      font-size: 2rem;
+      color: white;
+      animation: pulse 1.5s infinite;
     }
 
-    /* Main Container */
-    .container {
-      max-width: 420px;
-      width: 100%;
-      background: rgba(255 255 255 / 0.12);
-      border-radius: 18px;
-      padding: 2rem 1.5rem 2.5rem;
-      box-shadow:
-        0 8px 32px 0 rgba(255 255 255 / 0.1),
-        inset 0 0 0 1px rgba(255 255 255 / 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      user-select: none;
-      margin-bottom: 1rem;
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
     }
 
-    /* Profile Picture */
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
     .profile-pic {
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 1rem;
       object-fit: cover;
-      border: 4px solid rgba(255 255 255 / 0.8);
-      box-shadow:
-        0 0 12px 3px #00bcd4,
-        0 0 28px 7px #ffeb3b;
-      margin-bottom: 1.2rem;
-      transition: transform 0.3s ease;
-      cursor: default;
-    }
-    .profile-pic:hover {
-      transform: scale(1.05);
     }
 
-    /* Title & Bio */
     h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 2.4rem;
-      margin: 0 0 0.3rem 0;
-      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-      text-transform: none; /* just in case */
-    }
-    p.bio {
-      font-size: 1rem;
-      line-height: 1.4;
-      margin-bottom: 2rem;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
-    /* Links */
+    p.bio {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
     .links {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
+      width: 100%;
+      max-width: 300px;
     }
+
     .link-btn {
-      background: rgba(255 255 255 / 0.18);
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: white;
-      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
+      padding: 0.75rem;
+      border-radius: 12px;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.3s ease;
     }
-    .link-btn i {
-      font-size: 1.5rem;
-    }
+
     .link-btn:hover {
-      background: rgba(255 255 255 / 0.38);
-      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
-    /* Platform Colors */
-    .instagram:hover {
-      background: #e4405f;
-      box-shadow: 0 0 18px #e4405f;
-    }
-    .tiktok:hover {
-      background: #69c9d0;
-      box-shadow: 0 0 18px #69c9d0;
-    }
-    .youtube:hover {
-      background: #ff0000;
-      box-shadow: 0 0 18px #ff0000;
-    }
-    .twitch:hover {
-      background: #9146ff;
-      box-shadow: 0 0 18px #9146ff;
+    .link-btn i {
+      margin-right: 10px;
+      font-size: 1.2rem;
     }
 
-    /* Footer */
     footer {
-      font-size: 0.85rem;
-      color: rgba(255 255 255 / 0.65);
+      position: absolute;
+      bottom: 10px;
       text-align: center;
-      margin-top: auto;
-      user-select: none;
-      padding-bottom: 8px;
-      font-family: 'Open Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      width: 100%;
     }
 
-    /* Responsive */
-    @media (max-width: 480px) {
+    @media screen and (max-height: 600px) {
+      .links {
+        max-height: 250px;
+        overflow-y: auto;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
       h1 {
-        font-size: 2rem;
-      }
-      .link-btn {
-        font-size: 1rem;
-        gap: 10px;
-        padding: 0.85rem 1rem;
-      }
-      .link-btn i {
-        font-size: 1.3rem;
-      }
-      .profile-pic {
-        width: 110px;
-        height: 110px;
-      }
-      body {
-        padding: 1rem 1rem 2rem;
+        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Loading Screen -->
   <div id="loading-screen">
-    <div class="spinner"></div>
+    <div class="loader-text">Loading...</div>
   </div>
 
-  <!-- Main Content -->
-  <div class="container" id="main-content" style="opacity:0; transition: opacity 0.6s ease;">
+  <div id="main-content">
     <img src="profile.png" alt="Tharealdayst Profile Picture" class="profile-pic" />
     <h1>tharealdayst</h1>
-    <p class="bio">Professional content creator and live streamer specializing in gaming. Connect with me across all platforms below.</p>
+    <p class="bio">Gaming content creator & streamer. Dive in — pick your portal 🎮✨🌀</p>
     <div class="links">
-      <a href="https://www.instagram.com/tharealdayst/" target="_blank" rel="noopener noreferrer" class="link-btn instagram">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
-      <a href="https://www.tiktok.com/@tharealdayst?_t=ZM-8wPN6plnJNV&_r=1" target="_blank" rel="noopener noreferrer" class="link-btn tiktok">
-        <i class="fab fa-tiktok"></i> TikTok
-      </a>
-      <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank" rel="noopener noreferrer" class="link-btn youtube">
-        <i class="fab fa-youtube"></i> YouTube
-      </a>
-      <a href="https://www.twitch.tv/tharealdayst/" target="_blank" rel="noopener noreferrer" class="link-btn twitch">
-        <i class="fab fa-twitch"></i> Twitch
-      </a>
+      <a class="link-btn" href="https://www.tiktok.com/@tharealdayst" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+      <a class="link-btn" href="https://www.instagram.com/tharealdayst/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+      <a class="link-btn" href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
+      <a class="link-btn" href="https://www.twitch.tv/tharealdayst/" target="_blank"><i class="fab fa-twitch"></i>Twitch</a>
     </div>
   </div>
 
   <footer>
-    &copy; 2025 tharealdayst. All rights reserved.
+    © 2025 tharealdayst. All rights reserved.
   </footer>
 
   <script>
-    // Wait for the page to load
-    window.addEventListener('load', () => {
+    function showPage() {
       const loader = document.getElementById('loading-screen');
-      const mainContent = document.getElementById('main-content');
-      // Fade out loader
+      const main = document.getElementById('main-content');
       loader.classList.add('hidden');
-      // Fade in main content
-      mainContent.style.opacity = '
+      main.style.opacity = '1';
+      setTimeout(() => loader.remove(), 600);
+    }
+
+    // Fallback: show after 3 seconds
+    setTimeout(showPage, 3000);
+
+    window.addEventListener('load', showPage);
+  </script>
+</body>
+</html>
