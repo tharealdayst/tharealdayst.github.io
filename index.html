@@ -3,83 +3,163 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tharealdayst - Link in Bio</title>
+<title>Tharealdayst - Connect & Stream</title>
+
+<!-- Google Fonts: Montserrat & Open Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p+1hp4G9x9XnjyJ94gP8Mf+MJ0sdxqJ1hRw6MSkH36s6Z+66LDWPRgIQDvULyo2o+KKD3f/6Nk23tnM6b9+5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Favicon -->
+<link rel="icon" href="profile.png" type="image/png" />
+
 <style>
+  /* Reset and basics */
+  * {
+    box-sizing: border-box;
+  }
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
     background-size: 600% 600%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 20s ease infinite;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem 4rem;
     min-height: 100vh;
-    box-sizing: border-box;
+    text-align: center;
   }
+
   @keyframes gradientShift {
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
+
+  /* Profile picture with glow */
   .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #fff;
-    margin-bottom: 1rem;
+    border: 4px solid rgba(255 255 255 / 0.85);
+    box-shadow:
+      0 0 8px 2px #00bcd4,
+      0 0 20px 6px #ffeb3b;
+    margin-bottom: 1.5rem;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
+  .profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 15px 5px #00bcd4,
+      0 0 35px 10px #ffeb3b;
+  }
+
   h1 {
-    margin: 0 0 0.3rem 0;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 2rem;
-    text-align: center;
+    font-size: 3rem;
+    margin: 0 0 0.25rem 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
+
   p.bio {
-    margin: 0 0 2rem 0;
-    font-size: 1.1rem;
+    max-width: 360px;
     font-weight: 400;
-    max-width: 320px;
-    text-align: center;
-    line-height: 1.4;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
   }
+
+  /* Links container */
   .links {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
-    max-width: 320px;
+    max-width: 380px;
   }
+
+  /* Buttons */
   .link-btn {
-    background: rgba(255 255 255 / 0.15);
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 1.1rem;
+    background: rgba(255 255 255 / 0.18);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: #fff;
     text-decoration: none;
-    text-align: center;
-    font-weight: 600;
-    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .link-btn i {
+    font-size: 1.6rem;
   }
   .link-btn:hover {
-    background: rgba(255 255 255 / 0.3);
+    background: rgba(255 255 255 / 0.38);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Accent colors on hover */
+  .instagram:hover {
+    background: #e4405f;
+    box-shadow: 0 0 15px #e4405f;
+  }
+  .tiktok:hover {
+    background: #69c9d0;
+    box-shadow: 0 0 15px #69c9d0;
+  }
+  .youtube:hover {
+    background: #ff0000;
+    box-shadow: 0 0 15px #ff0000;
+  }
+
+  /* Responsive */
+  @media (max-width: 420px) {
+    h1 {
+      font-size: 2.4rem;
+    }
+    p.bio {
+      font-size: 1.05rem;
+      max-width: 90%;
+    }
+    .link-btn {
+      font-size: 1.1rem;
+      padding: 0.9rem 1rem;
+    }
+    .link-btn i {
+      font-size: 1.3rem;
+    }
   }
 </style>
+
 </head>
 <body>
 
-<img src="profile.png" alt="Profile Picture" class="profile-pic" />
+<img src="profile.png" alt="Tharealdayst Profile Picture" class="profile-pic" />
+
 <h1>Tharealdayst</h1>
-<p class="bio">Professional content creator and live streamer specializing in gaming. Connect with me across all platforms through the links below.</p>
+<p class="bio">Professional content creator and live streamer specializing in gaming. Connect with me across all platforms below.</p>
 
 <div class="links">
-  <a href="https://www.instagram.com/tharealdayst/" target="_blank" class="link-btn">Instagram</a>
-  <a href="https://www.tiktok.com/@tharealdayst?_t=ZM-8wPN6plnJNV&_r=1" target="_blank" class="link-btn">TikTok</a>
-  <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank" class="link-btn">YouTube</a>
+  <a href="https://www.instagram.com/tharealdayst/" target="_blank" rel="noopener noreferrer" class="link-btn instagram">
+    <i class="fab fa-instagram"></i> Instagram
+  </a>
+  <a href="https://www.tiktok.com/@tharealdayst?_t=ZM-8wPN6plnJNV&_r=1" target="_blank" rel="noopener noreferrer" class="link-btn tiktok">
+    <i class="fab fa-tiktok"></i> TikTok
+  </a>
+  <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank" rel="noopener noreferrer" class="link-btn youtube">
+    <i class="fab fa-youtube"></i> YouTube
+  </a>
 </div>
 
 </body>
