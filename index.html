@@ -2,34 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>tharealdayst</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-sVdQ3JHEM+qNq91DW4aVqP5VXhe7E2z9HYqHxFboCIz9uMxFMaN5ZBbyfD5+pQ3MtyrWLSAZv0Yf1jI/74a4sA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome CDN for social icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-sVdQ3JHEM+qNq91DW4aVqP5VXhe7E2z9HYqHxFboCIz9uMxFMaN5ZBbyfD5+pQ3MtyrWLSAZv0Yf1jI/74a4sA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <!-- Google Fonts: Poppins -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html, body {
+    html,
+    body {
       height: 100%;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, #00f0ff, #ff4bc1, #f8ff48);
       background-size: 600% 600%;
       animation: gradientBG 20s ease infinite;
       color: white;
       overflow: hidden;
     }
-
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
-
     #loading-screen {
       position: fixed;
       width: 100%;
@@ -41,24 +56,26 @@
       z-index: 100;
       transition: opacity 0.6s ease;
     }
-
     #loading-screen.hidden {
       opacity: 0;
       pointer-events: none;
     }
-
     .loader-text {
       font-size: 2rem;
       color: white;
       animation: pulse 1.5s infinite;
     }
-
     @keyframes pulse {
-      0% { opacity: 0.5; }
-      50% { opacity: 1; }
-      100% { opacity: 0.5; }
+      0% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.5;
+      }
     }
-
     #main-content {
       display: flex;
       flex-direction: column;
@@ -70,7 +87,6 @@
       opacity: 0;
       transition: opacity 0.6s ease;
     }
-
     .profile-pic {
       width: 120px;
       height: 120px;
@@ -79,25 +95,22 @@
       margin-bottom: 1rem;
       object-fit: cover;
     }
-
     h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
+      text-transform: lowercase;
     }
-
     .bio {
       font-size: 1.1rem;
       margin-bottom: 2rem;
     }
-
     .links {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
     }
-
     .link-btn {
       display: flex;
       align-items: center;
@@ -108,18 +121,19 @@
       color: white;
       text-decoration: none;
       font-size: 1rem;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 6px transparent;
     }
-
     .link-btn:hover {
       background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 12px #fff;
     }
-
     .link-btn i {
       margin-right: 10px;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+      min-width: 24px;
+      text-align: center;
     }
-
     footer {
       position: absolute;
       bottom: 10px;
@@ -128,7 +142,6 @@
       font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.6);
     }
-
     /* Remove scrollbars for desktop */
     ::-webkit-scrollbar {
       display: none;
@@ -137,17 +150,15 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
     @media screen and (max-width: 768px) {
-      html, body {
+      html,
+      body {
         overflow: auto;
       }
-
       #main-content {
         height: auto;
         padding-bottom: 4rem;
       }
-
       footer {
         position: static;
         margin-top: 2rem;
@@ -163,30 +174,50 @@
   <div id="main-content">
     <img src="favicon.png" alt="Profile Picture" class="profile-pic" />
     <h1>tharealdayst</h1>
-    <p class="bio">Gaming content creator & streamer. Dive in — pick your portal 🎮✨🌀</p>
+    <p class="bio">
+      Gaming content creator & streamer. Dive in — pick your portal 🎮✨🌀
+    </p>
     <div class="links">
-      <a class="link-btn" href="https://www.tiktok.com/@tharealdayst" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
-      <a class="link-btn" href="https://www.instagram.com/tharealdayst/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-      <a class="link-btn" href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
-      <a class="link-btn" href="https://www.twitch.tv/tharealdayst/" target="_blank"><i class="fab fa-twitch"></i>Twitch</a>
+      <a
+        class="link-btn"
+        href="https://www.tiktok.com/@tharealdayst"
+        target="_blank"
+        ><i class="fab fa-tiktok"></i> TikTok</a
+      >
+      <a
+        class="link-btn"
+        href="https://www.instagram.com/tharealdayst/"
+        target="_blank"
+        ><i class="fab fa-instagram"></i> Instagram</a
+      >
+      <a
+        class="link-btn"
+        href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw"
+        target="_blank"
+        ><i class="fab fa-youtube"></i> YouTube</a
+      >
+      <a
+        class="link-btn"
+        href="https://www.twitch.tv/tharealdayst/"
+        target="_blank"
+        ><i class="fab fa-twitch"></i> Twitch</a
+      >
     </div>
   </div>
 
-  <footer>
-    © 2025 All rights reserved.
-  </footer>
+  <footer>© 2025 All rights reserved.</footer>
 
   <script>
     function showPage() {
-      const loader = document.getElementById('loading-screen');
-      const main = document.getElementById('main-content');
-      loader.classList.add('hidden');
-      main.style.opacity = '1';
+      const loader = document.getElementById("loading-screen");
+      const main = document.getElementById("main-content");
+      loader.classList.add("hidden");
+      main.style.opacity = "1";
       setTimeout(() => loader.remove(), 600);
     }
 
     setTimeout(showPage, 3000);
-    window.addEventListener('load', showPage);
+    window.addEventListener("load", showPage);
   </script>
 </body>
 </html>
