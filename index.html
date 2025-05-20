@@ -3,92 +3,42 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tharealdayst - Connect & Stream</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="icon" href="profile.png" type="image/png" />
-
+<title>Test Links</title>
 <style>
   body {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
     background-size: 600% 600%;
     animation: gradientShift 20s ease infinite;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem 1rem 4rem;
-    min-height: 100vh;
+    color: white;
     text-align: center;
-    overflow-x: hidden;
+    padding: 2rem;
   }
-
-  #loading-screen {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #000c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  .spinner {
-    width: 70px;
-    height: 70px;
-    border: 8px solid rgba(255, 255, 255, 0.15);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 1.2s linear infinite;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
   @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
   }
-
-  .container {
-    max-width: 450px;
-    width: 100%;
+  a {
+    display: block;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
   }
-
-  .profile-pic {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(255 255 255 / 0.85);
-    box-shadow:
-      0 0 8px 2px #00bcd4,
-      0 0 20px 6px #ffeb3b;
-    margin-bottom: 1.5rem;
+  a:hover {
+    text-decoration: underline;
   }
+</style>
+</head>
+<body>
 
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 3rem;
-    margin: 0 0 0.25rem 0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  }
+<h1>Tharealdayst</h1>
+<p>Professional content creator and live streamer. Connect with me:</p>
+<a href="https://www.instagram.com/tharealdayst/" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a href="https://www.tiktok.com/@tharealdayst" target="_blank" rel="noopener noreferrer">TikTok</a>
+<a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank" rel="noopener noreferrer">YouTube</a>
+<a href="https://www.twitch.tv/tharealdayst/" target="_blank" rel="noopener noreferrer">Twitch</a>
 
-  p.bio {
-    max-width: 360px;
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 3rem;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-  }
-
-  .links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    wi
+</body>
+</html>
