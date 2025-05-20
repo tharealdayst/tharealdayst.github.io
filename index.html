@@ -12,16 +12,27 @@
     box-sizing: border-box;
   }
 
-  body {
+  body, html {
     margin: 0;
+    padding: 0;
+    height: 100%;
     background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
+  }
+
+  /* Main container to control height and spacing */
+  main {
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   /* Profile picture */
@@ -47,19 +58,27 @@
     font-size: 1.1rem;
     max-width: 320px;
     margin-bottom: 2rem;
-    text-align: center;
     line-height: 1.4;
+    text-align: center;
+  }
+
+  /* Left align bio on desktop */
+  @media(min-width: 700px) {
+    .bio {
+      text-align: left;
+      max-width: 100%;
+      width: 100%;
+    }
   }
 
   /* Links container */
   .links {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* TWO columns on all devices */
+    grid-template-columns: repeat(2, 1fr); /* Two columns on all devices */
     gap: 1.5rem;
     justify-items: center;
-    max-width: 450px;
-    margin: 0 auto 2rem auto;
+    margin-bottom: 1.5rem;
   }
 
   /* Link buttons */
@@ -95,49 +114,52 @@
 
   /* Footer copyright */
   footer {
+    flex-shrink: 0;
     font-size: 0.85rem;
     color: rgba(255 255 255 / 0.7);
     text-align: center;
-    margin-top: auto;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+    max-width: 480px;
   }
 
-  /* Remove any media queries changing layout, keep consistent two columns */
 </style>
 </head>
 <body>
 
-<!-- Profile pic -->
-<img src="profile.png" alt="tharealdayst Profile Picture" class="profile-pic" />
+<main>
+  <!-- Profile pic -->
+  <img src="profile.png" alt="tharealdayst Profile Picture" class="profile-pic" />
 
-<!-- Your name -->
-<div class="profile-name">Dayst</div>
+  <!-- Your name -->
+  <div class="profile-name">Dayst</div>
 
-<!-- Bio -->
-<div class="bio">
-  Professional gaming content creator delivering high-quality streams, videos, and engaging content 🎮⚡<br />
-  Click the link below and see what’s next. 🔥👇
-</div>
+  <!-- Bio -->
+  <div class="bio">
+    Professional gaming content creator delivering high-quality streams, videos, and engaging content 🎮⚡<br />
+    Click the link below and see what’s next. 🔥👇
+  </div>
 
-<!-- Social links -->
-<section class="links">
-  <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank" rel="noopener noreferrer">
-    <img src="youtube.png" alt="YouTube" />
-    <span>YouTube</span>
-  </a>
-  <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
-    <img src="twitch.png" alt="Twitch" />
-    <span>Twitch</span>
-  </a>
-  <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
-    <img src="tiktok.png" alt="TikTok" />
-    <span>TikTok</span>
-  </a>
-  <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
-    <img src="instagram.png" alt="Instagram" />
-    <span>Instagram</span>
-  </a>
-</section>
+  <!-- Social links -->
+  <section class="links">
+    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="youtube.png" alt="YouTube" />
+      <span>YouTube</span>
+    </a>
+    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="twitch.png" alt="Twitch" />
+      <span>Twitch</span>
+    </a>
+    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="tiktok.png" alt="TikTok" />
+      <span>TikTok</span>
+    </a>
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="instagram.png" alt="Instagram" />
+      <span>Instagram</span>
+    </a>
+  </section>
+</main>
 
 <footer>
   &copy; 2025 tharealdayst. All rights reserved.
