@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
 
 <!-- Font Awesome CDN for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p+1hp4G9x9XnjyJ94gP8Mf+MJ0sdxqJ1hRw6MSkH36s6Z+66LDWPRgIQDvULyo2o+KKD3f/6Nk23tnM6b9+5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Favicon -->
 <link rel="icon" href="profile.png" type="image/png" />
@@ -32,135 +32,55 @@
     padding: 3rem 1rem 4rem;
     min-height: 100vh;
     text-align: center;
+    overflow-x: hidden;
   }
 
+  /* Loading overlay */
+  #loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease;
+  }
+  #loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* Spinner */
+  .spinner {
+    width: 70px;
+    height: 70px;
+    border: 8px solid rgba(255, 255, 255, 0.15);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Container */
+  .container {
+    width: 100%;
+    max-width: 450px;
+    padding: 0 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s;
+  }
+  .container.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Gradient animation */
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* Profile picture with glow */
-  .profile-pic {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(255 255 255 / 0.85);
-    box-shadow:
-      0 0 8px 2px #00bcd4,
-      0 0 20px 6px #ffeb3b;
-    margin-bottom: 1.5rem;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-  .profile-pic:hover {
-    transform: scale(1.1);
-    box-shadow:
-      0 0 15px 5px #00bcd4,
-      0 0 35px 10px #ffeb3b;
-  }
-
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 3rem;
-    margin: 0 0 0.25rem 0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  }
-
-  p.bio {
-    max-width: 360px;
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 3rem;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Links container */
-  .links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 380px;
-  }
-
-  /* Buttons */
-  .link-btn {
-    background: rgba(255 255 255 / 0.18);
-    border-radius: 14px;
-    padding: 1.1rem 1.3rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-  .link-btn i {
-    font-size: 1.6rem;
-  }
-  .link-btn:hover {
-    background: rgba(255 255 255 / 0.38);
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
-  }
-
-  /* Accent colors on hover */
-  .instagram:hover {
-    background: #e4405f;
-    box-shadow: 0 0 15px #e4405f;
-  }
-  .tiktok:hover {
-    background: #69c9d0;
-    box-shadow: 0 0 15px #69c9d0;
-  }
-  .youtube:hover {
-    background: #ff0000;
-    box-shadow: 0 0 15px #ff0000;
-  }
-
-  /* Responsive */
-  @media (max-width: 420px) {
-    h1 {
-      font-size: 2.4rem;
-    }
-    p.bio {
-      font-size: 1.05rem;
-      max-width: 90%;
-    }
-    .link-btn {
-      font-size: 1.1rem;
-      padding: 0.9rem 1rem;
-    }
-    .link-btn i {
-      font-size: 1.3rem;
-    }
-  }
-</style>
-
-</head>
-<body>
-
-<img src="profile.png" alt="Tharealdayst Profile Picture" class="profile-pic" />
-
-<h1>Tharealdayst</h1>
-<p class="bio">Professional content creator and live streamer specializing in gaming. Connect with me across all platforms below.</p>
-
-<div class="links">
-  <a href="https://www.instagram.com/tharealdayst/" target="_blank" rel="noopener noreferrer" class="link-btn instagram">
-    <i class="fab fa-instagram"></i> Instagram
-  </a>
-  <a href="https://www.tiktok.com/@tharealdayst?_t=ZM-8wPN6plnJNV&_r=1" target="_blank" rel="noopener noreferrer" class="link-btn tiktok">
-    <i class="fab fa-tiktok"></i> TikTok
-  </a>
-  <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank" rel="noopener noreferrer" class="link-btn youtube">
-    <i class="fab fa-youtube"></i> YouTube
-  </a>
-</div>
-
-</body>
-</html>
+    50% { background-po
