@@ -96,9 +96,23 @@
     .links {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1.5rem;
       justify-items: center;
+    }
+
+    /* Desktop layout adjustment */
+    @media(min-width: 768px) {
+      .links {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      /* Group last two (YouTube & Twitch) on second row */
+      .link-btn.youtube {
+        grid-column: 2 / 3;
+      }
+      .link-btn.twitch {
+        grid-column: 3 / 4;
+      }
     }
 
     .link-btn {
@@ -132,6 +146,8 @@
     .link-btn span {
       font-weight: 600;
       font-size: 1rem;
+      text-align: center;
+      width: 100%;
     }
 
     footer {
@@ -165,23 +181,23 @@
   <main id="main-content">
     <img src="favicon.png" alt="Profile picture" class="profile-pic" />
     <h1>tharealdayst</h1>
-    <p class="bio">Gaming content creator & streamer. Dive in — pick your portal 🎮✨🌀</p>
+    <p class="bio">Professional gaming content creator delivering high-quality streams, videos, and engaging content 🎮⚡Click the link below and see what’s next. 🔥👇</p>
 
     <section class="links">
-      <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank">
-        <img src="tiktok.png" alt="TikTok">
+      <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
+        <img src="tiktok.png" alt="TikTok" />
         <span>TikTok</span>
       </a>
-      <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
-        <img src="instagram.png" alt="Instagram">
+      <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
+        <img src="instagram.png" alt="Instagram" />
         <span>Instagram</span>
       </a>
-      <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
-        <img src="youtube.png" alt="YouTube">
+      <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn youtube" target="_blank" rel="noopener noreferrer">
+        <img src="youtube.png" alt="YouTube" />
         <span>YouTube</span>
       </a>
-      <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank">
-        <img src="twitch.png" alt="Twitch">
+      <a href="https://www.twitch.tv/tharealdayst/" class="link-btn twitch" target="_blank" rel="noopener noreferrer">
+        <img src="twitch.png" alt="Twitch" />
         <span>Twitch</span>
       </a>
     </section>
