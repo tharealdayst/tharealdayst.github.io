@@ -22,22 +22,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: hidden; /* Prevent vertical scroll on desktop */
+    overflow-y: auto;
   }
 
-  /* Main container to control height and spacing */
   main {
     flex: 1 0 auto;
     width: 100%;
     max-width: 600px;
-    padding: 2rem 2rem 1rem;
+    padding: 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto; /* Enable scrolling only inside main if needed */
   }
 
-  /* Profile picture */
   .profile-pic {
     width: 130px;
     height: 130px;
@@ -47,7 +44,6 @@
     margin-bottom: 0.75rem;
   }
 
-  /* Name under profile pic */
   .profile-name {
     font-size: 1.8rem;
     font-weight: 700;
@@ -55,7 +51,6 @@
     letter-spacing: 1.2px;
   }
 
-  /* Bio */
   .bio {
     font-size: 1.2rem;
     max-width: 100%;
@@ -66,30 +61,6 @@
     width: 100%;
   }
 
-  /* Desktop bio left aligned and narrower for nicer reading */
-  @media (min-width: 700px) {
-    body {
-      overflow-y: auto; /* allow body scroll on desktop */
-    }
-    main {
-      max-width: 800px;
-      padding: 3rem 4rem 2rem;
-      align-items: flex-start;
-      overflow-y: visible;
-    }
-    .bio {
-      text-align: left;
-      max-width: 600px;
-      margin-bottom: 4rem;
-      padding: 0;
-      font-size: 1.3rem;
-    }
-    .profile-pic, .profile-name {
-      align-self: center; /* keep centered on desktop */
-    }
-  }
-
-  /* Links container */
   .links {
     width: 100%;
     display: grid;
@@ -99,7 +70,6 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Link buttons */
   .link-btn {
     display: flex;
     flex-direction: column;
@@ -116,6 +86,7 @@
     max-width: 320px;
     text-align: center;
   }
+
   .link-btn:hover {
     background: rgba(0,0,0,0.5);
     box-shadow: 0 0 12px white;
@@ -130,7 +101,6 @@
     object-fit: cover;
   }
 
-  /* Footer copyright */
   footer {
     flex-shrink: 0;
     font-size: 0.85rem;
@@ -141,24 +111,38 @@
     max-width: 600px;
   }
 
+  /* Desktop tweaks */
+  @media (min-width: 700px) {
+    main {
+      max-width: 800px;
+      padding: 3rem 2rem 2rem;
+      align-items: center;
+    }
+    .bio {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin-bottom: 4rem;
+      text-align: center;
+      padding: 0;
+    }
+    .links {
+      max-width: 700px;
+    }
+  }
+
 </style>
 </head>
 <body>
 
 <main>
-  <!-- Profile pic -->
   <img src="profile.png" alt="tharealdayst Profile Picture" class="profile-pic" />
-
-  <!-- Your name -->
   <div class="profile-name">Dayst</div>
 
-  <!-- Bio -->
   <div class="bio">
     Professional gaming content creator delivering high-quality streams, videos, and engaging content 🎮⚡<br />
     Click the link below and see what’s next. 🔥👇
   </div>
 
-  <!-- Social links -->
   <section class="links">
     <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank" rel="noopener noreferrer">
       <img src="youtube.png" alt="YouTube" />
