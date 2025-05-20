@@ -25,7 +25,6 @@
   }
 
   main {
-    /* We use viewport units to ensure no scrolling */
     max-width: 900px;
     width: 90vw;
     height: 90vh;
@@ -106,18 +105,8 @@
     margin-top: 1rem;
   }
 
-  /* MOBILE tweaks */
-  @media (max-width: 650px) {
-    main {
-      height: auto;
-      width: 95vw;
-      padding: 20px 0;
-    }
-    .links {
-      grid-template-columns: 1fr;
-      max-width: 350px;
-    }
-  }
+  /* Remove mobile changes to links layout to keep 2 columns on all devices */
+  /* So no media query changing grid-template-columns */
 
 </style>
 </head>
@@ -152,7 +141,7 @@
   </section>
 
   <footer>
-    &copy; 2025 tharealdayst. All rights reserved.
+    &copy; 2025 Dayst. All rights reserved.
   </footer>
 </main>
 
