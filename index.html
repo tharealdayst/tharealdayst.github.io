@@ -13,25 +13,34 @@
   }
   body, html {
     margin: 0; padding: 0;
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
-    overflow: hidden; /* NO scrollbars */
-    background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
+    overflow-y: auto; /* Allow vertical scroll if needed */
+    background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
+    background-size: 600% 600%;
+    animation: GradientShift 20s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  @keyframes GradientShift {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
   }
 
   main {
     max-width: 900px;
     width: 90vw;
-    height: 90vh;
+    min-height: 100vh;
+    padding: 3rem 1rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     text-align: center;
   }
 
@@ -102,11 +111,37 @@
     font-size: 0.85rem;
     color: rgba(255 255 255 / 0.7);
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
-  /* Remove mobile changes to links layout to keep 2 columns on all devices */
-  /* So no media query changing grid-template-columns */
+  /* Keep two-column grid on all devices */
+  @media (max-width: 480px) {
+    main {
+      padding: 2rem 1rem 1rem;
+    }
+    .links {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 100%;
+    }
+    .link-btn {
+      max-width: 140px;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+    }
+    .profile-name {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .bio {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  }
 
 </style>
 </head>
