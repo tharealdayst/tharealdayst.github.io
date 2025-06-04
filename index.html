@@ -73,14 +73,40 @@
       margin-bottom: 2rem;
     }
 
-    /* Consistent grid layout for links on all devices */
+    /* Grid: 3 columns on desktop, responsive on smaller */
     .links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
       gap: 1.2rem;
       width: 100%;
       max-width: 800px;
       margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .links {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .bio {
+        font-size: 1rem;
+      }
+
+      .link-btn {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile-name {
+        font-size: 1.6rem;
+      }
     }
 
     .link-btn {
@@ -126,26 +152,6 @@
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.7);
       margin-top: 1rem;
-    }
-
-    @media (max-width: 600px) {
-      .bio {
-        font-size: 1rem;
-      }
-
-      .link-btn {
-        font-size: 1rem;
-        padding: 1rem;
-      }
-
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-      }
-
-      .profile-name {
-        font-size: 1.6rem;
-      }
     }
 
     /* Modal styles */
@@ -240,7 +246,7 @@
   </div>
 
   <section class="links">
-    <!-- Keep the exact order and donate always last -->
+    <!-- Fixed order, donate last -->
     <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
       <img src="youtube.png" alt="YouTube" />
       <span>YouTube</span>
