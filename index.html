@@ -76,16 +76,32 @@
     /* Grid: 3 columns on desktop, responsive on smaller */
     .links {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
       width: 100%;
       max-width: 800px;
       margin-bottom: 1.5rem;
+      grid-auto-rows: min-content;
     }
 
+    /* Position Instagram and Donate */
+    @media (min-width: 901px) {
+      .instagram {
+        grid-column: 3 / 4;
+        grid-row: 2 / 3;
+      }
+
+      .donate {
+        grid-column: 3 / 4;
+        grid-row: 3 / 4;
+      }
+    }
+
+    /* Responsive fallback */
     @media (max-width: 900px) {
       .links {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-auto-rows: auto;
       }
     }
 
@@ -246,7 +262,6 @@
   </div>
 
   <section class="links">
-    <!-- Fixed order, donate last -->
     <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
       <img src="youtube.png" alt="YouTube" />
       <span>YouTube</span>
@@ -263,7 +278,7 @@
       <img src="tiktok.png" alt="TikTok" />
       <span>TikTok</span>
     </a>
-    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn instagram" target="_blank">
       <img src="instagram.png" alt="Instagram" />
       <span>Instagram</span>
     </a>
@@ -271,7 +286,7 @@
       <img src="twitter.png" alt="Twitter" />
       <span>Twitter</span>
     </a>
-    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn donate" target="_blank">
       <img src="ko-fi.png" alt="Ko-fi" />
       <span>Donate</span>
     </a>
@@ -290,31 +305,35 @@
 <!-- Modal for contact form -->
 <div class="modal-bg" id="modal-bg">
   <div class="modal">
-    <span class="close-btn" id="close-modal">&times;</span>
+    <span class="close-btn" id="modal-close">&times;</span>
     <h2>Contact Dayst</h2>
     <form id="contact-form">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required placeholder="Enter your name" />
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required placeholder="Enter your email" />
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+      
       <button type="submit">Send</button>
     </form>
   </div>
 </div>
 
 <script>
+  // Modal open on email click
   const contactEmail = document.getElementById('contact-email');
   const modalBg = document.getElementById('modal-bg');
-  const closeModal = document.getElementById('close-modal');
+  const modalClose = document.getElementById('modal-close');
   const contactForm = document.getElementById('contact-form');
 
   contactEmail.addEventListener('click', () => {
     modalBg.classList.add('active');
   });
 
-  closeModal.addEventListener('click', () => {
+  modalClose.addEventListener('click', () => {
     modalBg.classList.remove('active');
   });
 
@@ -326,8 +345,7 @@
 
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    alert(`Thank you, ${contactForm.name.value}! Your message has been sent.`);
+    alert('Thank you for your message! (This is a demo, no real submission.)');
     contactForm.reset();
     modalBg.classList.remove('active');
   });
