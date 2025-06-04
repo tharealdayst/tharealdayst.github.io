@@ -73,14 +73,14 @@
       margin-bottom: 2rem;
     }
 
+    /* Consistent grid layout for links on all devices */
     .links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.2rem;
       width: 100%;
       max-width: 800px;
       margin-bottom: 1.5rem;
-      /* We'll manage donate positioning by flex/grid changes */
     }
 
     .link-btn {
@@ -145,57 +145,6 @@
 
       .profile-name {
         font-size: 1.6rem;
-      }
-
-      /* Reorder donate on mobile: put donate between Instagram and X */
-      .links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-      }
-      /* Hide the donate in original place */
-      .donate-btn {
-        order: 3; /* Middle on mobile */
-        flex-basis: 100px;
-      }
-      .instagram-btn {
-        order: 2;
-        flex-basis: 100px;
-      }
-      .x-btn {
-        order: 4;
-        flex-basis: 100px;
-      }
-
-      /* Other links before Instagram */
-      .links > a:not(.instagram-btn):not(.donate-btn):not(.x-btn) {
-        order: 1;
-        flex-basis: 100px;
-      }
-    }
-
-    @media (min-width: 601px) {
-      /* On desktop: Donate under Instagram */
-      .links {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.2rem;
-      }
-
-      .instagram-btn {
-        grid-column: 1 / 2;
-        grid-row: 1;
-      }
-
-      .donate-btn {
-        grid-column: 1 / 2;
-        grid-row: 2;
-      }
-
-      .x-btn {
-        grid-column: 2 / 3;
-        grid-row: 1;
       }
     }
 
@@ -291,6 +240,7 @@
   </div>
 
   <section class="links">
+    <!-- Keep the exact order and donate always last -->
     <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
       <img src="youtube.png" alt="YouTube" />
       <span>YouTube</span>
@@ -307,17 +257,17 @@
       <img src="tiktok.png" alt="TikTok" />
       <span>TikTok</span>
     </a>
-    <a href="https://www.instagram.com/tharealdayst/" class="link-btn instagram-btn" target="_blank">
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
       <img src="instagram.png" alt="Instagram" />
       <span>Instagram</span>
     </a>
-    <a href="https://ko-fi.com/tharealdayst" class="link-btn donate-btn" target="_blank">
-      <img src="ko-fi.png" alt="Ko-fi" />
-      <span>Donate</span>
-    </a>
-    <a href="https://x.com/tharealdayst" class="link-btn x-btn" target="_blank">
+    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
       <img src="twitter.png" alt="Twitter" />
       <span>Twitter</span>
+    </a>
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
+      <img src="ko-fi.png" alt="Ko-fi" />
+      <span>Donate</span>
     </a>
   </section>
 
@@ -371,7 +321,6 @@
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Simple form validation passed, you can replace with your own submission logic
     alert(`Thank you, ${contactForm.name.value}! Your message has been sent.`);
     contactForm.reset();
     modalBg.classList.remove('active');
