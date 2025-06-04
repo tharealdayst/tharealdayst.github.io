@@ -80,6 +80,7 @@
       width: 100%;
       max-width: 800px;
       margin-bottom: 1.5rem;
+      /* We'll manage donate positioning by flex/grid changes */
     }
 
     .link-btn {
@@ -118,6 +119,7 @@
     .contact a {
       color: white;
       text-decoration: underline;
+      cursor: pointer;
     }
 
     footer {
@@ -144,6 +146,135 @@
       .profile-name {
         font-size: 1.6rem;
       }
+
+      /* Reorder donate on mobile: put donate between Instagram and X */
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+      /* Hide the donate in original place */
+      .donate-btn {
+        order: 3; /* Middle on mobile */
+        flex-basis: 100px;
+      }
+      .instagram-btn {
+        order: 2;
+        flex-basis: 100px;
+      }
+      .x-btn {
+        order: 4;
+        flex-basis: 100px;
+      }
+
+      /* Other links before Instagram */
+      .links > a:not(.instagram-btn):not(.donate-btn):not(.x-btn) {
+        order: 1;
+        flex-basis: 100px;
+      }
+    }
+
+    @media (min-width: 601px) {
+      /* On desktop: Donate under Instagram */
+      .links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+
+      .instagram-btn {
+        grid-column: 1 / 2;
+        grid-row: 1;
+      }
+
+      .donate-btn {
+        grid-column: 1 / 2;
+        grid-row: 2;
+      }
+
+      .x-btn {
+        grid-column: 2 / 3;
+        grid-row: 1;
+      }
+    }
+
+    /* Modal styles */
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-bg.active {
+      display: flex;
+    }
+
+    .modal {
+      background: #222;
+      border-radius: 15px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      color: white;
+      box-shadow: 0 0 15px #00bcd4;
+      position: relative;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .modal label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .modal input,
+    .modal textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .modal textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .modal button {
+      background: #00bcd4;
+      color: black;
+      font-weight: 700;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .modal button:hover {
+      background: #008ba3;
+    }
+
+    .modal .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #00bcd4;
     }
   </style>
 </head>
@@ -176,29 +307,76 @@
       <img src="tiktok.png" alt="TikTok" />
       <span>TikTok</span>
     </a>
-    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn instagram-btn" target="_blank">
       <img src="instagram.png" alt="Instagram" />
       <span>Instagram</span>
     </a>
-    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
-      <img src="twitter.png" alt="Twitter" />
-      <span>Twitter</span>
-    </a>
-    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn donate-btn" target="_blank">
       <img src="ko-fi.png" alt="Ko-fi" />
       <span>Donate</span>
+    </a>
+    <a href="https://x.com/tharealdayst" class="link-btn x-btn" target="_blank">
+      <img src="twitter.png" alt="Twitter" />
+      <span>Twitter</span>
     </a>
   </section>
 
   <div class="contact">
     📬 For all business inquiries, collaborations, or partnership opportunities,<br />
-    contact me at <a href="mailto:tharealdayst@gmail.com">tharealdayst@gmail.com</a>
+    contact me at <a id="contact-email">tharealdayst@gmail.com</a>
   </div>
 
   <footer>
     &copy; 2025 Dayst. All rights reserved.
   </footer>
 </main>
+
+<!-- Modal for contact form -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <span class="close-btn" id="close-modal">&times;</span>
+    <h2>Contact Dayst</h2>
+    <form id="contact-form">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required placeholder="Enter your name" />
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email" />
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const contactEmail = document.getElementById('contact-email');
+  const modalBg = document.getElementById('modal-bg');
+  const closeModal = document.getElementById('close-modal');
+  const contactForm = document.getElementById('contact-form');
+
+  contactEmail.addEventListener('click', () => {
+    modalBg.classList.add('active');
+  });
+
+  closeModal.addEventListener('click', () => {
+    modalBg.classList.remove('active');
+  });
+
+  modalBg.addEventListener('click', (e) => {
+    if (e.target === modalBg) {
+      modalBg.classList.remove('active');
+    }
+  });
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Simple form validation passed, you can replace with your own submission logic
+    alert(`Thank you, ${contactForm.name.value}! Your message has been sent.`);
+    contactForm.reset();
+    modalBg.classList.remove('active');
+  });
+</script>
 
 </body>
 </html>
