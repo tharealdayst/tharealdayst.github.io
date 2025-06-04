@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dayst</title>
+  <title>tharealdayst</title>
   <link rel="icon" href="favicon.png" type="image/png" />
 
   <style>
@@ -14,33 +14,46 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      height: 100vh;
+      width: 100%;
       background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
       background-size: 600% 600%;
-      animation: gradientMove 20s ease infinite;
+      animation: GradientShift 20s ease infinite;
       font-family: 'Courier New', Courier, monospace;
       color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
 
-    @keyframes gradientMove {
+    @keyframes GradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
     main {
+      max-width: 1000px;
+      width: 90vw;
+      height: 95vh;
+      overflow: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 1rem;
+      justify-content: flex-start;
+      padding: 2rem 1rem;
       text-align: center;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    main::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
     }
 
     .profile-pic {
-      width: 80px;
-      height: 80px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       border: 3px solid white;
       object-fit: cover;
@@ -48,53 +61,57 @@
     }
 
     .profile-name {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1.2px;
     }
 
     .bio {
-      font-size: 0.9rem;
-      line-height: 1.3;
-      max-width: 600px;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
     }
 
     .links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
       width: 100%;
-      max-width: 700px;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
     }
 
     .link-btn {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.2rem;
+      border-radius: 15px;
+      color: white;
+      font-weight: 600;
+      font-size: 1.15rem;
+      text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 0.8rem;
-      border-radius: 15px;
-      color: white;
-      text-decoration: none;
-      transition: background 0.3s;
+      transition: 0.3s ease;
     }
 
     .link-btn:hover {
       background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 12px white;
     }
 
     .link-btn img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 0.3rem;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      object-fit: cover;
       border: 2px solid white;
+      margin-bottom: 0.6rem;
+      object-fit: cover;
     }
 
     .contact {
-      font-size: 0.75rem;
+      font-size: 1rem;
       margin-top: 1rem;
     }
 
@@ -104,70 +121,84 @@
     }
 
     footer {
-      font-size: 0.65rem;
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 1rem;
     }
 
-    @media (max-height: 700px) {
-      .bio { font-size: 0.8rem; }
-      .link-btn { padding: 0.6rem; }
-      .link-btn img { width: 30px; height: 30px; }
+    @media (max-width: 600px) {
+      .bio {
+        font-size: 1rem;
+      }
+
+      .link-btn {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile-name {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <img src="profile.png" alt="Dayst Profile" class="profile-pic" />
-    <div class="profile-name">Dayst</div>
-    <div class="bio">
-      🎮 Welcome to the ultimate gaming experience!<br />
-      I’m here to share ⚡ electrifying gameplay, 🧠 tactical insights, and 🎤 engaging streams & videos.<br />
-      Dive in and connect with me & the community below 👇
-    </div>
 
-    <div class="links">
-      <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
-        <img src="youtube.png" alt="YouTube" />
-        YouTube
-      </a>
-      <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank">
-        <img src="discord.png" alt="Discord" />
-        Discord
-      </a>
-      <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank">
-        <img src="twitch.png" alt="Twitch" />
-        Twitch
-      </a>
-      <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank">
-        <img src="tiktok.png" alt="TikTok" />
-        TikTok
-      </a>
-      <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
-        <img src="instagram.png" alt="Instagram" />
-        Instagram
-      </a>
-      <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
-        <img src="twitter.png" alt="Twitter" />
-        Twitter
-      </a>
-      <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
-        <img src="ko-fi.png" alt="Ko-fi" />
-        Donate
-      </a>
-    </div>
+<main>
+  <img src="profile.png" alt="Dayst Profile" class="profile-pic" />
+  <div class="profile-name">Dayst</div>
 
-    <div class="contact">
-      📬 For business inquiries:<br />
-      <a href="mailto:tharealdayst@gmail.com?subject=Business%20Inquiry&body=Hi%20Dayst%2C%0A%0AI%27m%20reaching%20out%20about...">
-  tharealdayst@gmail.com
-</a>
+  <div class="bio">
+    🎮 Welcome to the ultimate gaming experience! <br />
+    I’m here to share ⚡ electrifying gameplay, 🧠 tactical insights, and 🎤 engaging streams & videos.<br />
+    Dive in and connect with me & the community below 👇
+  </div>
 
-    </div>
+  <section class="links">
+    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
+      <img src="youtube.png" alt="YouTube" />
+      <span>YouTube</span>
+    </a>
+    <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank">
+      <img src="discord.png" alt="Discord" />
+      <span>Discord</span>
+    </a>
+    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank">
+      <img src="twitch.png" alt="Twitch" />
+      <span>Twitch</span>
+    </a>
+    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank">
+      <img src="tiktok.png" alt="TikTok" />
+      <span>TikTok</span>
+    </a>
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
+      <img src="instagram.png" alt="Instagram" />
+      <span>Instagram</span>
+    </a>
+    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
+      <img src="twitter.png" alt="Twitter" />
+      <span>Twitter</span>
+    </a>
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
+      <img src="ko-fi.png" alt="Ko-fi" />
+      <span>Donate</span>
+    </a>
+  </section>
 
-    <footer>
-      &copy; 2025 Dayst. All rights reserved.
-    </footer>
-  </main>
+  <div class="contact">
+    📬 For all business inquiries, collaborations, or partnership opportunities,<br />
+    contact me at <a href="mailto:tharealdayst@gmail.com">tharealdayst@gmail.com</a>
+  </div>
+
+  <footer>
+    &copy; 2025 Dayst. All rights reserved.
+  </footer>
+</main>
+
 </body>
 </html>
