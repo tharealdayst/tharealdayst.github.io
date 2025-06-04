@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>tharealdayst</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-
   <style>
     * {
       box-sizing: border-box;
@@ -45,6 +44,7 @@
       padding: 2rem 1rem;
       text-align: center;
       scrollbar-width: none; /* Firefox */
+      transition: transform 0.3s ease;
     }
 
     main::-webkit-scrollbar {
@@ -73,7 +73,6 @@
       margin-bottom: 2rem;
     }
 
-    /* Grid: 3 columns on desktop, responsive on smaller */
     .links {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -81,48 +80,6 @@
       width: 100%;
       max-width: 800px;
       margin-bottom: 1.5rem;
-      grid-auto-rows: min-content;
-    }
-
-    /* Position Instagram and Donate */
-    @media (min-width: 901px) {
-      .instagram {
-        grid-column: 3 / 4;
-        grid-row: 2 / 3;
-      }
-
-      .donate {
-        grid-column: 2 / 3;
-        grid-row: 3 / 4;
-      }
-    }
-
-    /* Responsive fallback */
-    @media (max-width: 900px) {
-      .links {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        grid-auto-rows: auto;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .bio {
-        font-size: 1rem;
-      }
-
-      .link-btn {
-        font-size: 1rem;
-        padding: 1rem;
-      }
-
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-      }
-
-      .profile-name {
-        font-size: 1.6rem;
-      }
     }
 
     .link-btn {
@@ -170,124 +127,160 @@
       margin-top: 1rem;
     }
 
-    /* Modal styles with page vibe */
-    .modal-bg {
+    /* Modal styles */
+    #modal-bg {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
-      display: none;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      display: flex;
       justify-content: center;
       align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
       z-index: 1000;
-      backdrop-filter: blur(5px);
     }
 
-    .modal-bg.active {
-      display: flex;
+    #modal-bg.active {
+      visibility: visible;
+      opacity: 1;
     }
 
-    .modal {
-      background: linear-gradient(135deg, rgba(0,188,212,0.9), rgba(255,64,129,0.9), rgba(255,235,59,0.9));
+    #modal-container {
+      background: rgba(0, 0, 0, 0.75);
       border-radius: 20px;
-      padding: 2rem 2.5rem;
-      width: 90%;
-      max-width: 420px;
-      color: #222;
-      box-shadow:
-        0 0 15px #00bcd4,
-        0 0 30px #ff4081,
-        0 0 45px #ffeb3b;
+      box-shadow: 0 0 15px #00bcd4;
+      padding: 2rem;
+      width: 90vw;
+      max-width: 450px;
+      color: white;
       font-family: 'Courier New', Courier, monospace;
       position: relative;
-      display: flex;
-      flex-direction: column;
+      text-align: left;
     }
 
-    .modal h2 {
+    #close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      color: #00bcd4;
+      transition: color 0.3s ease;
+    }
+
+    #close-modal:hover {
+      color: #ff4081;
+    }
+
+    #modal-container h2 {
       margin-top: 0;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
       font-weight: 700;
-      color: #222;
-      text-shadow:
-        1px 1px 2px rgba(0,0,0,0.2);
-      letter-spacing: 1px;
+      font-size: 1.8rem;
+      text-shadow: 0 0 8px #00bcd4;
     }
 
-    .modal label {
+    #contact-form label {
       display: block;
-      margin-bottom: 0.4rem;
-      font-weight: 700;
-      color: #222;
-      text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
-      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
-    .modal input,
-    .modal textarea {
+    #contact-form input,
+    #contact-form textarea {
       width: 100%;
-      padding: 0.7rem 1rem;
-      margin-bottom: 1.2rem;
-      border-radius: 12px;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
       border: none;
       font-family: 'Courier New', Courier, monospace;
       font-size: 1rem;
-      outline: none;
-      box-shadow:
-        inset 0 0 8px rgba(255,255,255,0.6);
+      background: rgba(255 255 255 / 0.1);
+      color: white;
+      box-shadow: inset 0 0 6px rgba(0,188,212,0.7);
+      resize: vertical;
       transition: box-shadow 0.3s ease;
     }
 
-    .modal input:focus,
-    .modal textarea:focus {
-      box-shadow:
-        inset 0 0 12px #00bcd4,
-        0 0 8px #00bcd4;
-      background: #fefefe;
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+      outline: none;
+      box-shadow: inset 0 0 10px #ff4081;
+      background: rgba(255 255 255 / 0.15);
     }
 
-    .modal textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .modal button {
-      background: #222;
-      color: #00bcd4;
-      font-weight: 700;
-      padding: 0.85rem 2rem;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-      align-self: center;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-      box-shadow:
-        0 0 8px #00bcd4;
-    }
-
-    .modal button:hover {
+    #contact-form button {
+      width: 100%;
       background: #00bcd4;
-      color: #222;
-      box-shadow:
-        0 0 20px #00bcd4;
-    }
-
-    .modal .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 18px;
-      font-size: 2rem;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 15px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
-      color: #222;
-      text-shadow:
-        1px 1px 2px rgba(255,255,255,0.7);
-      transition: color 0.3s ease;
-      user-select: none;
+      box-shadow: 0 0 10px #00bcd4;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .modal .close-btn:hover {
-      color: #00bcd4;
+    #contact-form button:hover {
+      background: #ff4081;
+      box-shadow: 0 0 15px #ff4081;
+    }
+
+    /* Responsive tweaks */
+
+    @media (max-width: 900px) {
+      .links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        width: 95vw;
+        height: auto;
+      }
+
+      .bio {
+        font-size: 1rem;
+      }
+
+      .link-btn {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile-name {
+        font-size: 1.6rem;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Zoom out on desktop */
+    @media (min-width: 900px) {
+      main {
+        transform: scale(0.85);
+        transform-origin: top center;
+        height: 80vh;
+      }
     }
   </style>
 </head>
@@ -304,33 +297,33 @@
   </div>
 
   <section class="links">
-    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
+    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank" rel="noopener noreferrer">
       <img src="youtube.png" alt="YouTube" />
       <span>YouTube</span>
     </a>
-    <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank">
+    <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank" rel="noopener noreferrer">
       <img src="discord.png" alt="Discord" />
       <span>Discord</span>
     </a>
-    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank">
+    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
       <img src="twitch.png" alt="Twitch" />
       <span>Twitch</span>
     </a>
-    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank">
+    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
       <img src="tiktok.png" alt="TikTok" />
       <span>TikTok</span>
     </a>
-    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
-      <img src="twitter.png" alt="Twitter" />
-      <span>Twitter</span>
-    </a>
-    <a href="https://www.instagram.com/tharealdayst/" class="link-btn instagram" target="_blank">
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
       <img src="instagram.png" alt="Instagram" />
       <span>Instagram</span>
     </a>
-    <a href="https://ko-fi.com/tharealdayst" class="link-btn donate" target="_blank">
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer" style="grid-column: 2 / 3;">
       <img src="ko-fi.png" alt="Ko-fi" />
       <span>Donate</span>
+    </a>
+    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="twitter.png" alt="Twitter" />
+      <span>Twitter</span>
     </a>
   </section>
 
@@ -344,10 +337,10 @@
   </footer>
 </main>
 
-<!-- Modal for contact form -->
-<div class="modal-bg" id="modal-bg">
-  <div class="modal">
-    <span class="close-btn" id="close-modal">&times;</span>
+<!-- Modal -->
+<div id="modal-bg">
+  <div id="modal-container">
+    <span id="close-modal">&times;</span>
     <h2>Contact Me</h2>
     <form id="contact-form">
       <label for="name">Name</label>
