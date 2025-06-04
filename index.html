@@ -14,92 +14,102 @@
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
+      min-height: 100vh;
       width: 100%;
-      font-family: 'Courier New', Courier, monospace;
+      overflow-y: auto;
       background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
       background-size: 600% 600%;
       animation: GradientShift 20s ease infinite;
+      font-family: 'Courier New', Courier, monospace;
       color: white;
       display: flex;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
     }
 
     @keyframes GradientShift {
-      0% { background-position: 0% 50% }
-      50% { background-position: 100% 50% }
-      100% { background-position: 0% 50% }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     main {
-      width: 100%;
-      max-width: 500px;
-      padding: 2rem 1rem;
+      max-width: 900px;
+      width: 90vw;
+      padding: 3rem 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
     }
 
     .profile-pic {
-      width: 110px;
-      height: 110px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       border: 3px solid white;
       object-fit: cover;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .profile-name {
-      font-size: 2.2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1.2px;
     }
 
     .bio {
-      font-size: 1.1rem;
-      line-height: 1.6;
+      font-size: 1.3rem;
+      line-height: 1.5;
       margin-bottom: 2rem;
-      padding: 0 1rem;
+      padding: 0 10px;
     }
 
     .links {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 700px;
     }
 
     .link-btn {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(6px);
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-decoration: none;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.25rem 1.5rem;
+      border-radius: 15px;
       color: white;
       font-weight: 600;
+      font-size: 1.15rem;
+      transition: all 0.3s ease;
       width: 100%;
-      max-width: 320px;
-      transition: background 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .link-btn img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      max-width: 300px;
     }
 
     .link-btn:hover {
-      background: rgba(255, 255, 255, 0.35);
-      transform: translateY(-2px);
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 12px white;
+    }
+
+    .link-btn img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 0.6rem;
+      object-fit: cover;
     }
 
     .contact {
       font-size: 1rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
     }
 
     .contact a {
@@ -109,20 +119,41 @@
     }
 
     footer {
-      margin-top: 2rem;
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      margin-top: 2rem;
     }
 
     @media (max-width: 480px) {
-      .profile-name {
-        font-size: 1.8rem;
+      main {
+        padding: 2rem 1rem 1rem;
       }
+
+      .links {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .link-btn {
+        max-width: 90%;
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile-name {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+
       .bio {
         font-size: 1rem;
-      }
-      .link-btn {
-        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
       }
     }
   </style>
@@ -139,29 +170,36 @@
     Dive in and connect with me & the community below 👇
   </div>
 
-  <div class="links">
-    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
-      <img src="youtube.png" alt="YouTube" /> YouTube
+  <section class="links">
+    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="youtube.png" alt="YouTube" />
+      <span>YouTube</span>
     </a>
-    <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank">
-      <img src="discord.png" alt="Discord" /> Discord
+    <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="discord.png" alt="Discord" />
+      <span>Discord</span>
     </a>
-    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank">
-      <img src="twitch.png" alt="Twitch" /> Twitch
+    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="twitch.png" alt="Twitch" />
+      <span>Twitch</span>
     </a>
-    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank">
-      <img src="tiktok.png" alt="TikTok" /> TikTok
+    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="tiktok.png" alt="TikTok" />
+      <span>TikTok</span>
     </a>
-    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
-      <img src="instagram.png" alt="Instagram" /> Instagram
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="instagram.png" alt="Instagram" />
+      <span>Instagram</span>
     </a>
-    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
-      <img src="twitter.png" alt="Twitter" /> Twitter
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="ko-fi.png" alt="Ko-fi" />
+      <span>Donate</span>
     </a>
-    <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
-      <img src="ko-fi.png" alt="Ko-fi" /> Donate
+    <a href="https://x.com/tharealdayst" class="link-btn" target="_blank" rel="noopener noreferrer">
+      <img src="twitter.png" alt="Twitter" />
+      <span>Twitter</span>
     </a>
-  </div>
+  </section>
 
   <div class="contact">
     📬 For all business inquiries, collaborations, or partnership opportunities,<br />
