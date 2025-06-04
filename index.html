@@ -15,7 +15,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      overflow: hidden; /* prevents page scroll */
+      overflow: hidden;
       background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
       background-size: 600% 600%;
       animation: GradientShift 20s ease infinite;
@@ -23,7 +23,7 @@
       color: white;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
     }
 
     @keyframes GradientShift {
@@ -34,20 +34,18 @@
 
     main {
       max-width: 900px;
-      width: 90vw;
-      height: 100vh;
-      padding: 2rem 1rem;
-      overflow-y: auto; /* allows internal scroll if needed */
+      width: 100%;
+      padding: 1.5rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       text-align: center;
     }
 
     .profile-pic {
-      width: 130px;
-      height: 130px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       border: 3px solid white;
       object-fit: cover;
@@ -55,16 +53,16 @@
     }
 
     .profile-name {
-      font-size: 2rem;
+      font-size: 1.7rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       letter-spacing: 1.2px;
     }
 
     .bio {
-      font-size: 1.3rem;
-      line-height: 1.5;
-      margin-bottom: 2rem;
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
       padding: 0 10px;
     }
 
@@ -72,9 +70,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1rem;
       width: 100%;
       max-width: 700px;
+      margin-bottom: 1rem;
     }
 
     .link-btn {
@@ -83,14 +82,14 @@
       align-items: center;
       text-decoration: none;
       background: rgba(0, 0, 0, 0.3);
-      padding: 1.25rem 1.5rem;
+      padding: 1rem 1.2rem;
       border-radius: 15px;
       color: white;
       font-weight: 600;
-      font-size: 1.15rem;
+      font-size: 1rem;
       transition: all 0.3s ease;
       flex: 1 1 200px;
-      max-width: 300px;
+      max-width: 250px;
     }
 
     .link-btn:hover {
@@ -99,17 +98,16 @@
     }
 
     .link-btn img {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       border: 2px solid white;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
       object-fit: cover;
     }
 
     .contact {
-      font-size: 1rem;
-      margin-top: 2rem;
+      font-size: 0.9rem;
       padding: 0 1rem;
     }
 
@@ -120,41 +118,37 @@
     }
 
     footer {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.7);
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
 
     @media (max-width: 480px) {
-      main {
-        padding: 2rem 1rem 1rem;
-      }
-
-      .links {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
       .link-btn {
         max-width: 100%;
-        font-size: 1.1rem;
-        padding: 1.1rem;
+        font-size: 0.95rem;
+        padding: 0.9rem;
       }
 
       .profile-pic {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
       }
 
       .profile-name {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
       }
 
       .bio {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .link-btn img {
+        width: 45px;
+        height: 45px;
       }
     }
   </style>
