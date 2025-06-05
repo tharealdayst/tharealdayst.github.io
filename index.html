@@ -22,7 +22,8 @@
       color: white;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: start;
+      overflow-x: hidden;
     }
 
     @keyframes GradientShift {
@@ -118,7 +119,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       padding: 2rem;
       border-radius: 20px;
       max-width: 400px;
@@ -150,7 +151,8 @@
       .links {
         grid-template-columns: repeat(2, 1fr);
       }
-      .links a:last-child {
+
+      .links a:nth-child(7) {
         grid-column: span 2;
         justify-self: center;
       }
@@ -191,10 +193,12 @@
         <img src="instagram.png" alt="Instagram" />
         <span>Instagram</span>
       </a>
-      <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
+      <div></div> <!-- empty first column of third row -->
+      <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank" style="grid-column: 2;">
         <img src="ko-fi.png" alt="Ko-fi" />
         <span>Donate</span>
       </a>
+      <div></div> <!-- empty third column of third row -->
     </section>
     <div class="contact">
       📬 For all business inquiries, collaborations, or partnership opportunities,<br />
