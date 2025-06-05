@@ -71,7 +71,7 @@
     }
 
     /* Donate in second column on third row for desktop */
-    .links a:nth-child(7) {
+    .links a:last-child {
       grid-column: 2;
       grid-row: 3;
     }
@@ -206,9 +206,15 @@
         grid-auto-rows: auto;
         gap: 1.2rem;
       }
-      /* keep original social order in DOM */
-      /* Donate is last item so will be placed last naturally */
-      /* No explicit grid-area needed */
+      /* Remove specific grid positioning for donate on mobile */
+      .links a:last-child {
+        grid-column: auto; /* Reset to default */
+        grid-row: auto; /* Reset to default */
+        display: block; /* Make it a block element */
+        margin-left: auto; /* Center horizontally */
+        margin-right: auto; /* Center horizontally */
+        max-width: calc(50% - 0.6rem); /* Adjust width to roughly half of the container, accounting for gap */
+      }
     }
   </style>
 </head>
@@ -256,7 +262,7 @@
       contact me at <a onclick="document.getElementById('emailForm').style.display='block'">tharealdayst@gmail.com</a>
     </div>
     <footer>
-      &copy; 2025 Dayst. All rights reserved.
+      © 2025 Dayst. All rights reserved.
     </footer>
   </main>
   <div id="emailForm">
