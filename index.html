@@ -13,16 +13,19 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      height: 100%;
       width: 100%;
       background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
       background-size: 600% 600%;
       animation: GradientShift 20s ease infinite;
       font-family: 'Courier New', Courier, monospace;
       color: white;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      min-height: 100vh;
     }
 
     @keyframes GradientShift {
@@ -36,8 +39,6 @@
       width: 90vw;
       padding: 2rem 1rem;
       text-align: center;
-      overflow-y: auto;
-      max-height: 95vh;
     }
 
     .profile-pic {
@@ -67,6 +68,12 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
       margin-bottom: 2rem;
+    }
+
+    /* Donate in second column on third row for desktop */
+    .links a:nth-child(7) {
+      grid-column: 2;
+      grid-row: 3;
     }
 
     .link-btn {
@@ -120,12 +127,17 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
+      background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
+      background-size: 600% 600%;
+      animation: GradientShift 20s ease infinite;
       padding: 2rem;
       border-radius: 20px;
       max-width: 400px;
       width: 90%;
       z-index: 999;
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      font-family: 'Courier New', Courier, monospace;
     }
 
     #emailForm input,
@@ -136,14 +148,17 @@
       border: none;
       border-radius: 10px;
       font-size: 1rem;
-      background: rgba(255 255 255 / 0.1);
+      background: rgba(255, 255, 255, 0.2);
       color: white;
       resize: vertical;
       min-height: 40px;
+      max-height: 200px;
+      overflow-y: auto;
     }
 
-    #emailForm textarea {
-      min-height: 80px;
+    #emailForm input::placeholder,
+    #emailForm textarea::placeholder {
+      color: rgba(255, 255, 255, 0.8);
     }
 
     #emailForm button {
@@ -154,17 +169,35 @@
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      margin-right: 0.5rem;
+      transition: background 0.3s ease;
+      margin-right: 1rem;
+    }
+
+    #emailForm button:hover {
+      background: #ff1f6a;
     }
 
     #emailForm .cancel-btn {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       color: white;
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s ease;
+      margin-right: 0;
+    }
+
+    #emailForm .cancel-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+      color: #ff4081;
+    }
+
+    form .button-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
     }
 
     @media (max-width: 600px) {
@@ -173,27 +206,9 @@
         grid-auto-rows: auto;
         gap: 1.2rem;
       }
-
-      /* Mobile reorder for Donate to be between Twitter and Instagram as last row */
-      /* Social order: YouTube(1), Discord(2), Twitch(3), TikTok(4), Twitter(5), Instagram(6), Donate(7) */
-
-      /* Twitter */
-      .links a:nth-child(5) {
-        grid-column: 1;
-        grid-row: 3;
-      }
-
-      /* Donate */
-      .links a:nth-child(7) {
-        grid-column: 2;
-        grid-row: 3;
-      }
-
-      /* Instagram */
-      .links a:nth-child(6) {
-        grid-column: 1;
-        grid-row: 4;
-      }
+      /* keep original social order in DOM */
+      /* Donate is last item so will be placed last naturally */
+      /* No explicit grid-area needed */
     }
   </style>
 </head>
@@ -244,13 +259,12 @@
       &copy; 2025 Dayst. All rights reserved.
     </footer>
   </main>
-
   <div id="emailForm">
     <form onsubmit="event.preventDefault(); this.parentElement.style.display='none'">
       <input type="text" placeholder="Your Name" required />
       <input type="email" placeholder="Your Email" required />
       <textarea placeholder="Your Message" rows="5" required></textarea>
-      <div style="display: flex; justify-content: flex-end;">
+      <div class="button-group">
         <button type="submit">Send</button>
         <button type="button" class="cancel-btn" onclick="document.getElementById('emailForm').style.display='none'">Cancel</button>
       </div>
