@@ -71,7 +71,7 @@
     }
 
     /* Donate in second column on third row for desktop */
-    .links a:last-child {
+    .links a:nth-child(7) { /* REMOVED :last-child - Changed back to original nth-child(7) */
       grid-column: 2;
       grid-row: 3;
     }
@@ -206,14 +206,25 @@
         grid-auto-rows: auto;
         gap: 1.2rem;
       }
-      /* Remove specific grid positioning for donate on mobile */
+      .links a {
+        overflow: hidden; /* To contain the image within the button */
+      }
+      /* ONLY for mobile: Specific styles for the last child (Donate button) */
       .links a:last-child {
-        grid-column: auto; /* Reset to default */
-        grid-row: auto; /* Reset to default */
-        display: block; /* Make it a block element */
-        margin-left: auto; /* Center horizontally */
-        margin-right: auto; /* Center horizontally */
-        max-width: calc(50% - 0.6rem); /* Adjust width to roughly half of the container, accounting for gap */
+        grid-column: 1 / span 2; /* Make it span both columns */
+        grid-row: auto; /* Reset row from desktop specific positioning */
+        display: flex; /* Use flexbox for centering content */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically (optional, but good for consistency) */
+        max-width: 100%; /* Take full width of the row */
+        margin-left: 0; /* Reset margins */
+        margin-right: 0;
+      }
+      /* Ensure images within link buttons don't exceed their container */
+      .link-btn img {
+        width: 60px; /* Keep original size but ensure it's contained */
+        height: 60px;
+        object-fit: cover;
       }
     }
   </style>
