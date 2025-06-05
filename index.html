@@ -45,7 +45,8 @@
       padding: 2rem 1rem;
       text-align: center;
       scrollbar-width: none; /* Firefox */
-      transition: transform 0.3s ease;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scroll-behavior: smooth;
     }
 
     main::-webkit-scrollbar {
@@ -248,7 +249,7 @@
       }
     }
 
-    /* MOBILE: 2 columns, custom order & scroll, no scrollbar */
+    /* MOBILE: 2 columns, order with donate in 2nd col 3rd row */
     @media (max-width: 600px) {
       main {
         height: 100vh;
@@ -278,8 +279,7 @@
         margin-bottom: 2rem;
       }
 
-      /* Reset order and place exactly as requested */
-      /* Using explicit grid placement for order and position */
+      /* Reset order and position exactly */
 
       /* YouTube */
       .link-btn:nth-child(1) {
@@ -306,24 +306,25 @@
         grid-column: 1;
         grid-row: 3;
       }
-      /* Donate (Ko-fi) */
+      /* Donate */
       .link-btn:nth-child(6) {
         grid-column: 2;
         grid-row: 3;
         justify-self: center;
       }
-      /* Instagram alone on 4th row */
+      /* Instagram - alone on 4th row spanning 2 columns and centered */
       .link-btn:nth-child(7) {
         grid-column: 1 / 3;
         grid-row: 4;
         justify-self: center;
-        width: 50%; /* smaller width for center */
+        width: 50%;
       }
     }
   </style>
 </head>
 <body>
   <main>
+    <!-- Make sure you replace these image files with your actual images -->
     <img class="profile-pic" src="profile.jpg" alt="Profile Picture" />
     <h1 class="profile-name">tharealdayst</h1>
     <p class="bio">
