@@ -67,6 +67,12 @@
       margin-bottom: 2rem;
     }
 
+    /* Put Donate in second column on third row for desktop */
+    .links a:nth-child(7) {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
     .link-btn {
       background: rgba(0, 0, 0, 0.3);
       padding: 1.2rem;
@@ -141,6 +147,10 @@
       font-size: 1rem;
       background: rgba(255, 255, 255, 0.2);
       color: white;
+      resize: vertical; /* Allow vertical resize */
+      min-height: 40px;
+      max-height: 200px; /* Prevent too big */
+      overflow-y: auto; /* Show scrollbar inside textarea if needed */
     }
 
     #emailForm input::placeholder,
@@ -170,6 +180,11 @@
       .links a:last-child {
         grid-column: span 2;
         justify-self: center;
+      }
+      /* Remove the grid position override on mobile so donate goes last */
+      .links a:nth-child(7) {
+        grid-column: auto;
+        grid-row: auto;
       }
     }
   </style>
