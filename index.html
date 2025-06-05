@@ -14,7 +14,6 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      height: 100vh;
       width: 100%;
       background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
       background-size: 600% 600%;
@@ -25,7 +24,7 @@
       -webkit-overflow-scrolling: touch;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
     }
 
@@ -40,8 +39,6 @@
       width: 90vw;
       padding: 2rem 1rem;
       text-align: center;
-      overflow-y: auto;
-      max-height: 95vh;
     }
 
     .profile-pic {
@@ -73,7 +70,7 @@
       margin-bottom: 2rem;
     }
 
-    /* Desktop styling: DON’T TOUCH */
+    /* Donate in second column on third row for desktop */
     .links a:nth-child(7) {
       grid-column: 2;
       grid-row: 3;
@@ -130,7 +127,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
+      background: linear-gradient(135deg, #00bcd4, #ff4081, #ffeb3b);
+      background-size: 600% 600%;
+      animation: GradientShift 20s ease infinite;
       padding: 2rem;
       border-radius: 20px;
       max-width: 400px;
@@ -149,7 +148,7 @@
       border: none;
       border-radius: 10px;
       font-size: 1rem;
-      background: rgba(255 255 255 / 0.1);
+      background: rgba(255, 255, 255, 0.2);
       color: white;
       resize: vertical;
       min-height: 40px;
@@ -160,10 +159,6 @@
     #emailForm input::placeholder,
     #emailForm textarea::placeholder {
       color: rgba(255, 255, 255, 0.8);
-    }
-
-    #emailForm textarea {
-      min-height: 80px;
     }
 
     #emailForm button {
@@ -180,11 +175,10 @@
 
     #emailForm button:hover {
       background: #ff1f6a;
-      margin-right: 0.5rem;
     }
 
     #emailForm .cancel-btn {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       color: white;
       border: none;
       padding: 0.75rem 1.5rem;
@@ -200,31 +194,21 @@
       color: #ff4081;
     }
 
-    /* MOBILE ONLY */
+    form .button-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
     @media (max-width: 600px) {
       .links {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: auto;
         gap: 1.2rem;
       }
-
-      /* Reorder for mobile:
-         Keep DOM order as is.
-         Make donate the last box.
-         Two boxes per row.
-         Donate should be centered in last row alone.
-
-         Strategy:
-         - The first 6 socials fill first 3 rows (2 per row)
-         - Donate alone in last (4th) row, centered by spanning 2 cols
-      */
-
-      /* Reset any desktop specific placement */
-      .links a:nth-child(7) {
-        grid-column: 1 / span 2; /* Span both columns */
-        grid-row: 4; /* Last row */
-        justify-self: center; /* Center horizontally */
-      }
+      /* keep original social order in DOM */
+      /* Donate is last item so will be placed last naturally */
+      /* No explicit grid-area needed */
     }
   </style>
 </head>
@@ -275,13 +259,12 @@
       &copy; 2025 Dayst. All rights reserved.
     </footer>
   </main>
-
   <div id="emailForm">
     <form onsubmit="event.preventDefault(); this.parentElement.style.display='none'">
       <input type="text" placeholder="Your Name" required />
       <input type="email" placeholder="Your Email" required />
       <textarea placeholder="Your Message" rows="5" required></textarea>
-      <div style="display: flex; justify-content: flex-end;">
+      <div class="button-group">
         <button type="submit">Send</button>
         <button type="button" class="cancel-btn" onclick="document.getElementById('emailForm').style.display='none'">Cancel</button>
       </div>
