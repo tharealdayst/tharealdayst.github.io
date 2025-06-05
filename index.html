@@ -23,7 +23,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
     }
 
     @keyframes GradientShift {
@@ -35,19 +34,8 @@
     main {
       max-width: 1000px;
       width: 90vw;
-      height: 95vh;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       padding: 2rem 1rem;
       text-align: center;
-      scrollbar-width: none;
-    }
-
-    main::-webkit-scrollbar {
-      display: none;
     }
 
     .profile-pic {
@@ -76,9 +64,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
-      width: 100%;
-      max-width: 800px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .link-btn {
@@ -126,168 +112,105 @@
       margin-top: 1rem;
     }
 
-    /* CONTACT FORM MODAL */
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.75);
+    #emailForm {
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .modal-content {
-      background: rgba(0, 0, 0, 0.85);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
       padding: 2rem;
       border-radius: 20px;
       max-width: 400px;
       width: 90%;
-      color: white;
-      text-align: left;
+      z-index: 999;
     }
 
-    .modal-content input,
-    .modal-content textarea {
+    #emailForm input,
+    #emailForm textarea {
       width: 100%;
-      padding: 0.75rem;
-      margin-top: 0.5rem;
       margin-bottom: 1rem;
-      border-radius: 10px;
+      padding: 0.75rem;
       border: none;
-      font-family: inherit;
+      border-radius: 10px;
       font-size: 1rem;
     }
 
-    .modal-content button {
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 10px;
-      background: #00bcd4;
+    #emailForm button {
+      background: #ff4081;
       color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      margin-right: 0.5rem;
     }
 
-    .modal-content button:hover {
-      background: #008fa1;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .links {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .link-btn {
-        font-size: 1rem;
-        padding: 1rem;
+      .links a:last-child {
+        grid-column: span 2;
+        justify-self: center;
       }
-
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-      }
-
-      .profile-name {
-        font-size: 1.6rem;
-      }
-
-      /* Specific order for mobile */
-      .links {
-        display: grid;
-        grid-template-areas:
-          "youtube discord"
-          "twitch tiktok"
-          "twitter donate"
-          "instagram instagram";
-        gap: 1.2rem;
-      }
-
-      .link-btn[data-name="YouTube"] { grid-area: youtube; }
-      .link-btn[data-name="Discord"] { grid-area: discord; }
-      .link-btn[data-name="Twitch"] { grid-area: twitch; }
-      .link-btn[data-name="TikTok"] { grid-area: tiktok; }
-      .link-btn[data-name="Twitter"] { grid-area: twitter; }
-      .link-btn[data-name="Instagram"] { grid-area: instagram; }
-      .link-btn[data-name="Donate"] { grid-area: donate; }
     }
   </style>
 </head>
 <body>
-
-<main>
-  <img src="profile.png" alt="Dayst Profile" class="profile-pic" />
-  <div class="profile-name">Dayst</div>
-
-  <div class="bio">
-    🎮 Welcome to the ultimate gaming experience! <br />
-    I’m here to share ⚡ electrifying gameplay, 🧠 tactical insights, and 🎤 engaging streams & videos.<br />
-    Dive in and connect with me & the community below 👇
-  </div>
-
-  <section class="links">
-    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" data-name="YouTube" target="_blank">
-      <img src="youtube.png" alt="YouTube" />
-      <span>YouTube</span>
-    </a>
-    <a href="https://discord.gg/5dzxwuju" class="link-btn" data-name="Discord" target="_blank">
-      <img src="discord.png" alt="Discord" />
-      <span>Discord</span>
-    </a>
-    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" data-name="Twitch" target="_blank">
-      <img src="twitch.png" alt="Twitch" />
-      <span>Twitch</span>
-    </a>
-    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" data-name="TikTok" target="_blank">
-      <img src="tiktok.png" alt="TikTok" />
-      <span>TikTok</span>
-    </a>
-    <a href="https://x.com/tharealdayst" class="link-btn" data-name="Twitter" target="_blank">
-      <img src="twitter.png" alt="Twitter" />
-      <span>Twitter</span>
-    </a>
-    <a href="https://ko-fi.com/tharealdayst" class="link-btn" data-name="Donate" target="_blank">
-      <img src="ko-fi.png" alt="Donate" />
-      <span>Donate</span>
-    </a>
-    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" data-name="Instagram" target="_blank">
-      <img src="instagram.png" alt="Instagram" />
-      <span>Instagram</span>
-    </a>
-  </section>
-
-  <div class="contact">
-    📬 For all business inquiries, collaborations, or partnership opportunities,<br />
-    contact me at <a onclick="document.getElementById('contact-modal').style.display='flex'">tharealdayst@gmail.com</a>
-  </div>
-
-  <footer>
-    &copy; 2025 Dayst. All rights reserved.
-  </footer>
-</main>
-
-<!-- CONTACT FORM MODAL -->
-<div class="modal" id="contact-modal">
-  <div class="modal-content">
-    <h3>Contact Me</h3>
-    <input type="text" placeholder="Your Name" required />
-    <textarea rows="5" placeholder="Your Message" required></textarea>
-    <div>
-      <button onclick="sendMessage()">Send</button>
-      <button onclick="document.getElementById('contact-modal').style.display='none'">Cancel</button>
+  <main>
+    <img src="profile.png" alt="Dayst Profile" class="profile-pic" />
+    <div class="profile-name">Dayst</div>
+    <div class="bio">
+      🎮 Welcome to the ultimate gaming experience! <br />
+      I’m here to share ⚡ electrifying gameplay, 🧠 tactical insights, and 🎤 engaging streams & videos.<br />
+      Dive in and connect with me & the community below 👇
     </div>
+    <section class="links">
+      <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" target="_blank">
+        <img src="youtube.png" alt="YouTube" />
+        <span>YouTube</span>
+      </a>
+      <a href="https://discord.gg/5dzxwuju" class="link-btn" target="_blank">
+        <img src="discord.png" alt="Discord" />
+        <span>Discord</span>
+      </a>
+      <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" target="_blank">
+        <img src="twitch.png" alt="Twitch" />
+        <span>Twitch</span>
+      </a>
+      <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" target="_blank">
+        <img src="tiktok.png" alt="TikTok" />
+        <span>TikTok</span>
+      </a>
+      <a href="https://x.com/tharealdayst" class="link-btn" target="_blank">
+        <img src="twitter.png" alt="Twitter" />
+        <span>Twitter</span>
+      </a>
+      <a href="https://www.instagram.com/tharealdayst/" class="link-btn" target="_blank">
+        <img src="instagram.png" alt="Instagram" />
+        <span>Instagram</span>
+      </a>
+      <a href="https://ko-fi.com/tharealdayst" class="link-btn" target="_blank">
+        <img src="ko-fi.png" alt="Ko-fi" />
+        <span>Donate</span>
+      </a>
+    </section>
+    <div class="contact">
+      📬 For all business inquiries, collaborations, or partnership opportunities,<br />
+      contact me at <a onclick="document.getElementById('emailForm').style.display='block'">tharealdayst@gmail.com</a>
+    </div>
+    <footer>
+      &copy; 2025 Dayst. All rights reserved.
+    </footer>
+  </main>
+  <div id="emailForm">
+    <form onsubmit="event.preventDefault(); this.parentElement.style.display='none'">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
   </div>
-</div>
-
-<script>
-  function sendMessage() {
-    alert("Message sent!");
-    document.getElementById("contact-modal").style.display = "none";
-  }
-</script>
-
 </body>
 </html>
