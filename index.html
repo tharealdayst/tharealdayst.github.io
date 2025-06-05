@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>tharealdayst</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-
   <style>
     * {
       box-sizing: border-box;
@@ -14,7 +13,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      height: 100vh;
       width: 100%;
       background: linear-gradient(270deg, #00bcd4, #ff4081, #ffeb3b);
       background-size: 600% 600%;
@@ -23,8 +22,8 @@
       color: white;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      overflow-x: hidden;
+      align-items: center;
+      overflow: hidden;
     }
 
     @keyframes GradientShift {
@@ -36,19 +35,19 @@
     main {
       max-width: 1000px;
       width: 90vw;
-      min-height: 100vh;
+      height: 95vh;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       padding: 2rem 1rem;
       text-align: center;
-      overflow-y: auto;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
     }
 
     main::-webkit-scrollbar {
-      display: none; /* Chrome, Safari */
+      display: none;
     }
 
     .profile-pic {
@@ -118,6 +117,7 @@
     .contact a {
       color: white;
       text-decoration: underline;
+      cursor: pointer;
     }
 
     footer {
@@ -126,14 +126,59 @@
       margin-top: 1rem;
     }
 
-    @media (max-width: 600px) {
+    /* CONTACT FORM MODAL */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      color: white;
+      text-align: left;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .modal-content button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: #00bcd4;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+
+    .modal-content button:hover {
+      background: #008fa1;
+    }
+
+    @media (max-width: 768px) {
       .links {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.2rem;
-      }
-
-      .bio {
-        font-size: 1rem;
       }
 
       .link-btn {
@@ -150,17 +195,24 @@
         font-size: 1.6rem;
       }
 
-      .links a:nth-child(7) {
-        order: 6; /* Donate */
+      /* Specific order for mobile */
+      .links {
+        display: grid;
+        grid-template-areas:
+          "youtube discord"
+          "twitch tiktok"
+          "twitter donate"
+          "instagram instagram";
+        gap: 1.2rem;
       }
 
-      .links a:nth-child(6) {
-        order: 5; /* Twitter/X */
-      }
-
-      .links a:nth-child(5) {
-        order: 7; /* Instagram */
-      }
+      .link-btn[data-name="YouTube"] { grid-area: youtube; }
+      .link-btn[data-name="Discord"] { grid-area: discord; }
+      .link-btn[data-name="Twitch"] { grid-area: twitch; }
+      .link-btn[data-name="TikTok"] { grid-area: tiktok; }
+      .link-btn[data-name="Twitter"] { grid-area: twitter; }
+      .link-btn[data-name="Instagram"] { grid-area: instagram; }
+      .link-btn[data-name="Donate"] { grid-area: donate; }
     }
   </style>
 </head>
@@ -177,63 +229,65 @@
   </div>
 
   <section class="links">
-    <a class="link-btn" href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" target="_blank">
+    <a href="https://www.youtube.com/channel/UC6JTDvBY92PYBmPOdb_5COw" class="link-btn" data-name="YouTube" target="_blank">
       <img src="youtube.png" alt="YouTube" />
-      YouTube
+      <span>YouTube</span>
     </a>
-    <a class="link-btn" href="https://discord.gg/5dzxwuju" target="_blank">
+    <a href="https://discord.gg/5dzxwuju" class="link-btn" data-name="Discord" target="_blank">
       <img src="discord.png" alt="Discord" />
-      Discord
+      <span>Discord</span>
     </a>
-    <a class="link-btn" href="https://www.twitch.tv/tharealdayst/" target="_blank">
+    <a href="https://www.twitch.tv/tharealdayst/" class="link-btn" data-name="Twitch" target="_blank">
       <img src="twitch.png" alt="Twitch" />
-      Twitch
+      <span>Twitch</span>
     </a>
-    <a class="link-btn" href="https://www.tiktok.com/@tharealdayst" target="_blank">
+    <a href="https://www.tiktok.com/@tharealdayst" class="link-btn" data-name="TikTok" target="_blank">
       <img src="tiktok.png" alt="TikTok" />
-      TikTok
+      <span>TikTok</span>
     </a>
-    <a class="link-btn" href="https://www.instagram.com/tharealdayst/" target="_blank">
-      <img src="instagram.png" alt="Instagram" />
-      Instagram
-    </a>
-    <a class="link-btn" href="https://x.com/tharealdayst" target="_blank">
+    <a href="https://x.com/tharealdayst" class="link-btn" data-name="Twitter" target="_blank">
       <img src="twitter.png" alt="Twitter" />
-      Twitter
+      <span>Twitter</span>
     </a>
-    <a class="link-btn" href="https://ko-fi.com/tharealdayst" target="_blank">
+    <a href="https://ko-fi.com/tharealdayst" class="link-btn" data-name="Donate" target="_blank">
       <img src="ko-fi.png" alt="Donate" />
-      Donate
+      <span>Donate</span>
+    </a>
+    <a href="https://www.instagram.com/tharealdayst/" class="link-btn" data-name="Instagram" target="_blank">
+      <img src="instagram.png" alt="Instagram" />
+      <span>Instagram</span>
     </a>
   </section>
 
   <div class="contact">
     📬 For all business inquiries, collaborations, or partnership opportunities,<br />
-    contact me at <a href="#" onclick="document.getElementById('emailModal').style.display='block'; return false;">tharealdayst@gmail.com</a>
+    contact me at <a onclick="document.getElementById('contact-modal').style.display='flex'">tharealdayst@gmail.com</a>
   </div>
 
   <footer>
     &copy; 2025 Dayst. All rights reserved.
   </footer>
+</main>
 
-  <!-- Modal Form -->
-  <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; backdrop-filter: blur(5px); background-color: rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center;">
-    <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; max-width: 400px; width: 90%; text-align: left;">
-      <h2 style="margin-top:0; color:white;">Send a Message</h2>
-      <form onsubmit="event.preventDefault(); alert('Message sent!'); document.getElementById('emailModal').style.display='none';">
-        <label style="display:block; margin-bottom: 0.5rem;">Your Email:</label>
-        <input type="email" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border:none; border-radius:8px;" />
-
-        <label style="display:block; margin-bottom: 0.5rem;">Message:</label>
-        <textarea required style="width:100%; padding:0.5rem; height:100px; border:none; border-radius:8px; margin-bottom:1rem;"></textarea>
-
-        <button type="submit" style="padding:0.6rem 1.2rem; border:none; border-radius:10px; background:white; color:black; font-weight:bold;">Send</button>
-        <button type="button" onclick="document.getElementById('emailModal').style.display='none';" style="margin-left:10px; padding:0.6rem 1.2rem; background:none; border:1px solid white; color:white; border-radius:10px;">Cancel</button>
-      </form>
+<!-- CONTACT FORM MODAL -->
+<div class="modal" id="contact-modal">
+  <div class="modal-content">
+    <h3>Contact Me</h3>
+    <input type="text" placeholder="Your Name" required />
+    <textarea rows="5" placeholder="Your Message" required></textarea>
+    <div>
+      <button onclick="sendMessage()">Send</button>
+      <button onclick="document.getElementById('contact-modal').style.display='none'">Cancel</button>
     </div>
   </div>
+</div>
 
-</main>
+<script>
+  function sendMessage() {
+    alert("Message sent!");
+    document.getElementById("contact-modal").style.display = "none";
+  }
+</script>
 
 </body>
 </html>
